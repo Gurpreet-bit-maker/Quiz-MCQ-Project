@@ -10,107 +10,141 @@
       href="https://fonts.googleapis.com/css2?family=Big+Shoulders:opsz,wght@10..72,100..900&family=Edu+AU+VIC+WA+NT+Arrows:wght@400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
       rel="stylesheet"
     />
-    <style>
+    <!-- <link rel="stylesheet" href="/html/my-new-github/quizGame.css" /> -->
+     <style>
       body {
-        background-color: blueviolet;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100vh;
-        font-family: Arial, Helvetica, sans-serif;
-        user-select: none;
-      }
+  /* background-color: blueviolet; */
+  background-color: rgb(215, 191, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  user-select: none;
+}
 
-      #container {
-        position: relative;
-        background-color: yellow;
-        width: 30%;
-        box-shadow: 7px 7px 23px 4px;
-        border-radius: 5px;
-        height: 47vh;
-      }
-      .level {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+#container {
+  position: relative;
+  background-color: yellow;
+  width: 30%;
+  box-shadow: 7px 7px 23px 4px;
+  border-radius: 5px;
+  height: 47vh;
+}
+.level {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-        margin-bottom: -20px;
-      }
-      .info {
-        background-color: black;
-        color: white;
-        width: 13%;
-        height: 37px;
-        border-radius: 21px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 15px;
-        margin: 5px;
-      }
-      .qui {
-        background-color: black;
-        color: white;
-        text-align: center;
-        height: 15vh;
-      }
-      .btn {
-        text-align: center;
-        background-color: white;
-        margin: 10px 10px;
-        border-radius: 3px;
-        font-size: 23px;
-        color: #e74c3c;
-        font-family: "Open Sans", sans-serif;
-        letter-spacing: -1px;
-      }
-      .btn:hover {
-        background-color: black;
-        color: orange;
-      }
-      .correctClick {
-        background-color: green;
-        color: white;
-      }
-      /* #displayAnswers li{
+  margin-bottom: -20px;
+}
+.info {
+  background-color: black;
+  color: white;
+  width: 13%;
+  height: 37px;
+  border-radius: 21px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  margin: 5px;
+}
+.qui {
+  background-color: black;
+  color: white;
+  text-align: center;
+  height: 15vh;
+}
+.btn {
+  text-align: center;
+  background-color: white;
+  margin: 10px 10px;
+  border-radius: 3px;
+  font-size: 23px;
+  color: #e74c3c;
+  font-family: "Open Sans", sans-serif;
+  letter-spacing: -1px;
+}
+.btn:hover {
+  background-color: black;
+  color: orange;
+}
+.correctClick {
+  background-color: green;
+  color: white;
+}
+
+/* js */
+.btnNone {
+  display: none;
+}
+
+.blink-text {
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.displayAnswers {
   list-style: none;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 1px;
+  background-color: rgb(242, 229, 213);
+  border-radius: 10px;
+  line-height: 35px;
+  font-family: "Poppins", sans-serif;
+  height: 17vh;
+  box-shadow: 1px 2px 7px 1px;
+}
+.displayAnswers {
+  display: none;
+}
+.de {
+  display: none;
+}
+.har {
+  display: none;
+}
+.visble {
+  display: block;
+}
+.list
+/* {
+    display: none;
 } */
-      /* js */
-      .btnNone {
-        display: none;
-      }
+.result {
+  display: block;
+  background-color: gainsboro;
+  color: black;
+  text-align: center;
+  width: 80px;
+  border-radius: 5px;
+  padding: 5px;
+  letter-spacing: 2px;
+}
+.result:hover
+{
+    background-color: orange;
+    color: white;
+}
+.chak {
+  display: none;
+}
 
-      .blink-text {
-        animation: blink 1s infinite;
-      }
-      @keyframes blink {
-        0% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 0;
-        }
-        100% {
-          opacity: 1;
-        }
-      }
-      .displayAnswers {
-        list-style: none;
-        font-size: 20px;
-        text-align: center;
-        letter-spacing: 1px;
-        background-color: rgb(242, 229, 213);
-        border-radius: 10px;
-        line-height: 35px;
-        font-family: "Poppins", sans-serif;
-        height: 17vh;
-        box-shadow: 1px 2px 7px 1px;
-      }
-      /* js */
-    </style>
+     </style>
   </head>
   <body>
     <div id="container">
@@ -133,237 +167,358 @@
       </div>
       <div id="displayAnswers" class="answerslist"></div>
     </div>
-    <script>
+    <div class="searching">
+      <input type="text" id="inp" />
+      <button id="bt" onclick="cut()">clear</button>
+      <div class="list">
+      </div>
+      <p id="demo"></p>
+    </div>
+
+    <!-- <script src="/html/my-new-github/quizGame.js"></script> -->
+     <script>
       let userData = [];
-      let correctClicked = [];
-      let display = document.getElementById("displayAnswers");
+let correctClicked = [];
+let display = document.getElementById("displayAnswers");
 
-      let answerslist = document.querySelectorAll("#displayAnswers li");
+let answerslist = document.querySelectorAll("#displayAnswers li");
 
-      let h1 = document.querySelector("h1");
-      let score = 0;
-      let started = false;
-      let inncorrectAns = 0;
-      let counter = 1;
+let h1 = document.querySelector("h1");
+let score = 0;
+let started = false;
+let inncorrectAns = 0;
+let counter = 1;
 
-      let soundWrong = document.getElementById("wrong");
+let soundWrong = document.getElementById("wrong");
 
-      let counterNumber = document.querySelector(".counter");
-      let qui = document.querySelector(".qui");
-      let pera1 = document.getElementById("btn1");
-      let pera2 = document.getElementById("btn2");
-      let pera3 = document.getElementById("btn3");
-      let pera4 = document.getElementById("btn4");
-      let btn = document.querySelectorAll(".btn");
-      let first = [
-        {
-          quition: "What is the capital of india?",
-          answer: ["Mumbai", "Delhi", "Kolkata", "Chennei"],
-          correct: 1,
-        },
-        {
-          quition: "Which is the largest planet in our solar system?",
-          answer: ["Earth", "Mars", "Jupiter", "Venus"],
-          correct: 2,
-        },
-        {
-          quition: "Who was the first President of India?",
-          answer: [
+let counterNumber = document.querySelector(".counter");
+let qui = document.querySelector(".qui");
+let pera1 = document.getElementById("btn1");
+let pera2 = document.getElementById("btn2");
+let pera3 = document.getElementById("btn3");
+let pera4 = document.getElementById("btn4");
+let btn = document.querySelectorAll(".btn");
+let first = [
+    {
+        quition: "What is the capital of india?",
+        answer: ["Mumbai", "Delhi", "Kolkata", "Chennei"],
+        correct: 1,
+    },
+    {
+        quition: "Which is the largest planet in our solar system?",
+        answer: ["Earth", "Mars", "Jupiter", "Venus"],
+        correct: 2,
+    },
+    {
+        quition: "Who was the first President of India?",
+        answer: [
             "Dr. B. R. Ambedkar",
             "Dr. Rajendra Prasad",
             "Sardar Vallabhbhai Patel",
             "Jawaharlal Nehru",
-          ],
-          correct: 1,
-        },
-        {
-          quition: "What is the capital of Japan?",
-          answer: ["Beijing", "Seoul", "Tokyo", "Bangkok"],
-          correct: 2,
-        },
-      ];
+        ],
+        correct: 1,
+    },
+    {
+        quition: "What is the capital of Japan?",
+        answer: ["Beijing", "Seoul", "Tokyo", "Bangkok"],
+        correct: 2,
+    },
+];
 
-      let options = first.map(({ answer }) => answer);
-      let correctAns = first.map(({ correct }) => correct);
-      let quitionsAll = first.map(({ quition }) => quition);
+let options = first.map(({ answer }) => answer);
+let correctAns = first.map(({ correct }) => correct);
+let quitionsAll = first.map(({ quition }) => quition);
 
-      // console.log(quitionsAll);
-      // console.log(options);
+// console.log(quitionsAll);
+// console.log(options);
 
-      //options
-      function gameBegin() {
-        qui.innerText = quitionsAll[0];
-        options[0].forEach((element, index) => {
-          document.getElementById(`btn${index + 1}`).innerText = element;
-        });
-      }
-      gameBegin();
+//options
+function gameBegin() {
+    qui.innerText = quitionsAll[0];
+    options[0].forEach((element, index) => {
+        document.getElementById(`btn${index + 1}`).innerText = element;
+    });
+}
+gameBegin();
 
-      //levelUp and q/a change
-      function levelUp(score, inncorrectAns) {
-        setTimeout(function () {
-          if (score == 1 || inncorrectAns == 1) {
+//levelUp and q/a change
+function levelUp(score, inncorrectAns) {
+    setTimeout(function () {
+        if (score == 1 || inncorrectAns == 1) {
             qui.innerText = quitionsAll[1];
             // console.log(score, quitionCount);
             options[1].forEach((element, index) => {
-              document.getElementById(`btn${index + 1}`).innerText = element;
+                document.getElementById(`btn${index + 1}`).innerText = element;
             });
             console.log(score, inncorrectAns, "when your score 1 + 1");
-          }
-          if (score == 2 || inncorrectAns == 2) {
+        }
+        if (score == 2 || inncorrectAns == 2) {
             qui.innerText = quitionsAll[2];
             // console.log(score, quitionCount);
             options[2].forEach((element, index) => {
-              document.getElementById(`btn${index + 1}`).innerText = element;
+                document.getElementById(`btn${index + 1}`).innerText = element;
             });
-          }
-          if (score == 3 || inncorrectAns == 3) {
+        }
+        if (score == 3 || inncorrectAns == 3) {
             qui.innerText = quitionsAll[3];
             console.log(score, inncorrectAns);
             options[3].forEach((element, index) => {
-              document.getElementById(`btn${index + 1}`).innerText = element;
+                document.getElementById(`btn${index + 1}`).innerText = element;
             });
-          }
-          if (inncorrectAns >= 4) {
+        }
+        if (inncorrectAns >= 4) {
             setTimeout(function () {
-              location.reload(); //reload page
+                location.reload(); //reload page
             }, 4000);
             qui.innerText = `your score is ${score}!`;
             qui.innerText = `Not Good, Your Score Is ${score}`;
 
             correctClicked.forEach((element) => {
-              display.innerHTML += `<li>${element}</li>`;
+                display.innerHTML += `<li>${element}</li>`;
             });
 
             display.classList.add("displayAnswers");
 
             display.childNodes.forEach((item) => {
-              if (item.innerText == "Delhi") {
-                item.style.color = "green";
-                item.style.fontWeight = "bold";
-              } else if (item.innerText == "Jupiter") {
-                item.style.color = "green";
-                item.style.fontWeight = "bold";
-              } else if (item.innerText == "Dr. Rajendra Prasad") {
-                item.style.color = "green";
-                item.style.fontWeight = "bold";
-              } else if (item.innerText == "Tokyo") {
-                item.style.color = "green";
-                item.style.fontWeight = "bold";
-              } else {
-                item.style.color = "red";
-                
-              }
+                if (item.innerText == "Delhi") {
+                    item.style.color = "green";
+                    item.style.fontWeight = "bold";
+                } else if (item.innerText == "Jupiter") {
+                    item.style.color = "green";
+                    item.style.fontWeight = "bold";
+                } else if (item.innerText == "Dr. Rajendra Prasad") {
+                    item.style.color = "green";
+                    item.style.fontWeight = "bold";
+                } else if (item.innerText == "Tokyo") {
+                    item.style.color = "green";
+                    item.style.fontWeight = "bold";
+                } else {
+                    item.style.color = "red";
+                }
             });
 
             btn.forEach((element) => {
-              element.classList.add("btnNone");
+                element.classList.add("btnNone");
             });
             if (score >= 4) {
-              let soundCorrect = document.getElementById("correct");
-              soundCorrect.volume = 1.0;
-              soundCorrect.play();
-              qui.innerText = `your score is ${score}!`;
-              qui.classList.add("blink-text");
-              qui.innerHTML = `Verry Good! <br> Your Score Is ${score}`;
-              console.log("congrates");
+                let soundCorrect = document.getElementById("correct");
+                soundCorrect.volume = 1.0;
+                soundCorrect.play();
+                qui.innerText = `your score is ${score}!`;
+                qui.classList.add("blink-text");
+                qui.innerHTML = `Verry Good! <br> Your Score Is ${score}`;
+                console.log("congrates");
             }
-          }
-        }, 700);
-      }
-      //* text blink when score is full
-
-      //pressBtn
-      function btnPress() {
-        if (counter !== 4) {
-          counter++;
-          counterNumber.innerText = `${counter}/4`;
         }
+    }, 700);
+}
+//* text blink when score is full
 
-        if (this.innerText == "Delhi") {
-          correctClicked.push(this.innerText);
-          console.log(correctClicked);
-          this.style.backgroundColor = "green";
-          setTimeout(function () {
+//pressBtn
+function btnPress() {
+    if (counter !== 4) {
+        counter++;
+        counterNumber.innerText = `${counter}/4`;
+    }
+
+    if (this.innerText == "Delhi") {
+        correctClicked.push(this.innerText);
+        console.log(correctClicked);
+        this.style.backgroundColor = "green";
+        setTimeout(function () {
             pera2.style.backgroundColor = "white";
-          }, 250);
-          score++;
-          inncorrectAns++; // note
+        }, 250);
+        score++;
+        inncorrectAns++; // note
 
-          console.log(`your first answer is correct ${score}`);
-          levelUp(score, inncorrectAns);
-        } else if (this.innerText == "Jupiter") {
-          correctClicked.push(this.innerText);
-          console.log(correctClicked);
+        console.log(`your first answer is correct ${score}`);
+        levelUp(score, inncorrectAns);
+    } else if (this.innerText == "Jupiter") {
+        correctClicked.push(this.innerText);
+        console.log(correctClicked);
 
-          this.style.backgroundColor = "green";
-          setTimeout(function () {
+        this.style.backgroundColor = "green";
+        setTimeout(function () {
             pera3.style.backgroundColor = "white";
-          }, 250);
-          score++;
-          inncorrectAns++; // note
-          console.log(`your second answer is correct ${score}`);
-          levelUp(score, inncorrectAns);
-        } else if (this.innerText == "Dr. Rajendra Prasad") {
-          correctClicked.push(this.innerText);
-          console.log(correctClicked);
+        }, 250);
+        score++;
+        inncorrectAns++; // note
+        console.log(`your second answer is correct ${score}`);
+        levelUp(score, inncorrectAns);
+    } else if (this.innerText == "Dr. Rajendra Prasad") {
+        correctClicked.push(this.innerText);
+        console.log(correctClicked);
 
-          this.style.backgroundColor = "green";
-          setTimeout(function () {
+        this.style.backgroundColor = "green";
+        setTimeout(function () {
             pera2.style.backgroundColor = "white";
-          }, 250);
-          score++;
-          inncorrectAns++; // note
+        }, 250);
+        score++;
+        inncorrectAns++; // note
 
-          console.log(`your third answer is correct ${score}`);
-          levelUp(score, inncorrectAns);
-        } else if (this.innerText == "Tokyo") {
-          correctClicked.push(this.innerText);
-          console.log(correctClicked);
+        console.log(`your third answer is correct ${score}`);
+        levelUp(score, inncorrectAns);
+    } else if (this.innerText == "Tokyo") {
+        correctClicked.push(this.innerText);
+        console.log(correctClicked);
 
-          this.style.backgroundColor = "green";
-          setTimeout(function () {
+        this.style.backgroundColor = "green";
+        setTimeout(function () {
             pera3.style.backgroundColor = "white";
-          }, 250);
-          score++;
-          inncorrectAns++; // note
+        }, 250);
+        score++;
+        inncorrectAns++; // note
 
-          console.log(`your fourth answer is correct ${score}`);
-          levelUp(score, inncorrectAns);
-        } else if (
-          this.innerText !== "Delhi" &&
-          this.innerText !== "Jupiter" &&
-          this.innerText !== "Dr. Rajendra Prasad" &&
-          this.innerText !== "Tokyo"
-        ) {
-          correctClicked.push(this.innerText);
-          console.log(correctClicked);
+        console.log(`your fourth answer is correct ${score}`);
+        levelUp(score, inncorrectAns);
+    } else if (
+        this.innerText !== "Delhi" &&
+        this.innerText !== "Jupiter" &&
+        this.innerText !== "Dr. Rajendra Prasad" &&
+        this.innerText !== "Tokyo"
+    ) {
+        correctClicked.push(this.innerText);
+        console.log(correctClicked);
 
-          inncorrectAns++; // note down
-          console.log(
+        inncorrectAns++; // note down
+        console.log(
             score,
             inncorrectAns,
             "not click right answer you incorrect increased"
-          );
+        );
 
-          levelUp(score, inncorrectAns);
-        } else {
-          this.style.backgroundColor = "red";
-          this.style.color = "white";
-          console.log("wrong answer");
+        levelUp(score, inncorrectAns);
+    } else {
+        this.style.backgroundColor = "red";
+        this.style.color = "white";
+        console.log("wrong answer");
+    }
+}
+
+for (buttons of btn) {
+    buttons.addEventListener("click", btnPress);
+}
+
+// display.innerHTML = `<h1>${correctClicked[0]}</h1>`
+// correctClicked.forEach((element) => {
+//   // display.innerHTML = `<b>${element.innerText}</b>`;
+//   display.innerHTML += `<b>${element}</b>`;
+// });
+let bt = document.getElementById("bt");
+let div = document.querySelector(".li-sec");
+let de = document.querySelector('.de');
+let har = document.querySelector('.har');
+let pera = document.getElementById('demo');
+
+let delhi = document.getElementById('delhi');
+
+
+
+function cut() {
+    let inp = document.getElementById("inp").value;
+    let newstr = inp.slice(0, -1);
+    let s = (document.getElementById("inp").value = newstr);
+    inp.value = "";
+}
+
+let cities = ["Uttar Pradesh"
+    , "Maharashtra",
+    "Bihar"
+    , "West Bengal",
+    "Madhya Pradesh"
+    , "Rajasthan"
+    , "Tamil Nadu"
+    , "Karnataka"
+    , "Gujarat"
+    , "Punjab",
+    "Delhi"];
+let searching = document.getElementById('inp');
+let divList = document.querySelector('.list');
+
+function inputV() {
+    let input = searching.value.toLowerCase();
+    divList.innerHTML = "";
+    console.log(divList);
+
+    let filterCites = cities.filter(item => item.toLowerCase().startsWith(input));
+    let element;
+
+    filterCites.forEach((event) => {
+
+        element = document.createElement("li");
+        element.innerText = event;
+        element.classList.add("result");
+        divList.appendChild(element);
+
+        clickPrint(element, input);
+
+        if (input === "") {
+
+            element.classList.remove("result");
+            element.classList.add("chak");
         }
-      }
 
-      for (buttons of btn) {
-        buttons.addEventListener("click", btnPress);
-      }
+        // element.addEventListener('click', function (e) {
+        //     console.log(e.target);
+        //     element.classList.add("result");
+        // })
 
-      // display.innerHTML = `<h1>${correctClicked[0]}</h1>`
-      // correctClicked.forEach((element) => {
-      //   // display.innerHTML = `<b>${element.innerText}</b>`;
-      //   display.innerHTML += `<b>${element}</b>`;
-      // });
-      console.log(inncorrectAns);
-    </script>
+
+
+    })
+
+}
+
+function clickPrint(v, inputV) {
+    v.addEventListener("click", function () {
+        console.log("hello")
+        pera.textContent = v.innerText;
+        inputV = "";
+        console.log(inputV);
+    })
+}
+
+inp.addEventListener("input", inputV);
+
+let obj = [
+    {
+        name: "sumit",
+        roll: 254
+    },
+    {
+        name: "raja",
+        roll: 254
+    }
+];
+
+let obj2 =
+    [
+        {
+            name: "mohan",
+            roll: 254
+        },
+        {
+            name: "manoj",
+            roll: 254
+        }
+    ]
+
+// console.log(obj);
+
+
+let marge = [...obj, ...obj2];
+marge.map(item => item.gread = 542);
+// console.log(marge);
+
+marge.forEach((e, i) => {
+    
+})
+
+
+
+
+
+     </script>
   </body>
 </html>
